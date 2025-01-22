@@ -1,3 +1,8 @@
-export default function PetrieA(){
-    return(<h1>Hello</h1>)
+
+export default function PetrieA() {
+
+  return (
+   <h1>h</h1>
+  )
 }
+

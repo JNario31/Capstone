@@ -1,3 +1,9 @@
-export default function Bergeron(){
-    return(<h1>Hello</h1>)
+import { Component } from "../components/petrieb/temp";
+
+
+
+export default function PetrieB(){
+    return(
+      <h1>h</h1>
+    )
 }

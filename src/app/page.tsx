@@ -1,7 +1,10 @@
-import HomeTempChart from "./components/home-dash/temperature";
+import { Component } from "./components/home-dash/temp";
+
+
+
 
 export default function Home() {
   return (
-    <HomeTempChart/>
-  );
+    <Component/>
+    );
 }

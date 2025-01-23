@@ -1,7 +1,8 @@
+import { Component } from "../components/bergeron/temps";
 
 
 export default function Bergeron(){
   return(
-    <h1>h</h1>
+    <Component/>
   )
 }

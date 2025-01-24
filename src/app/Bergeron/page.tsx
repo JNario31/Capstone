@@ -1,4 +1,5 @@
-import { Component } from "../components/bergeron/temps";
+import Component from "../components/bergeron/temp";
+
 
 
 export default function Bergeron(){

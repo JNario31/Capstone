@@ -1,107 +1,70 @@
-"use client"
+import type { ChartConfig } from "@/components/ui/chart"
+import { BuildingChart } from "@/lib/charts/chart"
 
-import { TrendingUp } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import io from "socket.io-client"
-import { useEffect, useRef, useState } from "react"
-
-
-type ChartData = {
-  timestamp: string;
-  temperature: string;
-};
-
-const chartConfig = {
-  bergeron: {
-    label: "Temperaure",
+const temperatureConfig: ChartConfig = {
+  temperature: {
+    label: "Temperature",
     color: "hsl(var(--chart-1))",
   },
+}
 
-} satisfies ChartConfig
+const humidityConfig: ChartConfig = {
+  humidity: {
+    label: "Humidity",
+    color: "hsl(var(--chart-2))",
+  },
+}
 
-export function Component() {
-  const [chartData, setChartData] = useState<ChartData[]>([]);
-  const chartDataRef = useRef<ChartData[]>([]);
-  useEffect(() => {
-    const socket = io("http://localhost:4000");
+const pressureConfig: ChartConfig = {
+    pressure: {
+        label: "Pressure",
+        color: "hsl(var(--chart-3))",
+    }
+}
 
-    socket.on("connect", () => {
-      //console.log("Connected to the server");
-      socket.emit("request_data",{building:"Bergeron"});
-    });
+const airflowConfig: ChartConfig = {
+    airflow: {
+        label: "Airflow",
+        color: "hsl(var(--chart-4))",
+    }
+}
 
-    socket.on("chart_data", (data: ChartData[]) => {
-      //console.log("Incoming data from server:", data);
-
-      // Use ref to manage data updates
-      const existingDates = new Set(chartDataRef.current.map((item) => item.timestamp));
-      const filteredData = data.filter((item) => !existingDates.has(item.timestamp));
-
-      // Update the ref directly
-      chartDataRef.current = [...chartDataRef.current, ...filteredData];
-
-      // Sync with state to trigger re-render
-      setChartData([...chartDataRef.current]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-  
-
-  console.log(chartData);
-
+export default function Page() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Line Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <LineChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="timestamp"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => {
-                const date = new Date(value)
-                return date.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                })
-              }}
-            />
-            <YAxis/>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Line dataKey="temperature" type="monotone" stroke="var(--color-bergeron)" strokeWidth={2} dot={false} />
-          </LineChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-            <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-            </div>
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              Showing total visitors for the last 6 months
-            </div>
-          </div>
-        </div>
-      </CardFooter>
-    </Card>
+    <div className="container mx-auto p-4 space-y-8">
+      <BuildingChart
+        building="Bergeron"
+        title="Temperature Chart - Bergeron"
+        description="Real-time temperature data"
+        dataKey="temperature"
+        socketUrl="http://localhost:4000"
+        chartConfig={temperatureConfig}
+      />
+      <BuildingChart
+        building="Bergeron"
+        title="Humidity Chart - Another Building"
+        description="Real-time humidity data"
+        dataKey="humidity"
+        socketUrl="http://localhost:4000"
+        chartConfig={humidityConfig}
+      />
+      <BuildingChart
+        building="Bergeron"
+        title="Pressure Chart"
+        description="Real-time humidity data"
+        dataKey="pressure"
+        socketUrl="http://localhost:4000"
+        chartConfig={pressureConfig}
+      />
+       <BuildingChart
+        building="Bergeron"
+        title="Airflow Chart"
+        description="Real-time Airflow data"
+        dataKey="airflow"
+        socketUrl="http://localhost:4000"
+        chartConfig={airflowConfig}
+      />
+    </div>
   )
 }
+

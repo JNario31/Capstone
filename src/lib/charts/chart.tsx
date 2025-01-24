@@ -19,7 +19,7 @@ export function BuildingChart({ building, title, description, dataKey, socketUrl
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
+        <ChartContainer config={chartConfig} className="h-[20vh] w-full">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -32,7 +32,7 @@ export function BuildingChart({ building, title, description, dataKey, socketUrl
             <XAxis
               dataKey="timestamp"
               tickLine={false}
-              axisLine={false}
+              axisLine={true}
               tickMargin={8}
               tickFormatter={(value) => {
                 const date = new Date(value)
@@ -42,7 +42,8 @@ export function BuildingChart({ building, title, description, dataKey, socketUrl
                 })
               }}
             />
-            <YAxis />
+            <YAxis
+            axisLine={false}/>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Line dataKey={dataKey} type="monotone" stroke={`var(--color-${dataKey})`} strokeWidth={2} dot={false} />
           </LineChart>
@@ -51,9 +52,7 @@ export function BuildingChart({ building, title, description, dataKey, socketUrl
       <CardFooter>
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
-            <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              <DownloadButton/>
-            </div>
+          <DownloadButton building={building}/>
           </div>
         </div>
       </CardFooter>

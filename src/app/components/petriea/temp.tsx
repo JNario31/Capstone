@@ -1,11 +1,11 @@
 import { airflowConfig, humidityConfig, pressureConfig, temperatureConfig } from "@/config/chartConfig";
 import { BuildingChart } from "@/lib/charts/chart";
 
-export default function PetrieBTemperatureChart(){
+export default function PetrieATemperatureChart(){
   return(
     <div className="container mx-auto p-4 space-y-8">
     <BuildingChart
-      building="PetrieB"
+      building="PetrieA"
       title="Temperature Chart"
       description="Real-time temperature data"
       dataKey="temperature"
@@ -13,7 +13,7 @@ export default function PetrieBTemperatureChart(){
       chartConfig={temperatureConfig}
     />
     <BuildingChart
-      building="PetrieB"
+      building="PetrieA"
       title="Humidity Chart"
       description="Real-time humidity data"
       dataKey="humidity"
@@ -21,7 +21,7 @@ export default function PetrieBTemperatureChart(){
       chartConfig={humidityConfig}
     />
     <BuildingChart
-      building="PetrieB"
+      building="PetrieA"
       title="Pressure Chart"
       description="Real-time humidity data"
       dataKey="pressure"
@@ -29,7 +29,7 @@ export default function PetrieBTemperatureChart(){
       chartConfig={pressureConfig}
     />
       <BuildingChart
-      building="PetrieB"
+      building="PetrieA"
       title="Airflow Chart"
       description="Real-time Airflow data"
       dataKey="airflow"

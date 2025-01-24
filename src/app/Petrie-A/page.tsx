@@ -1,8 +1,9 @@
+import PetrieATemperatureChart from "../components/petriea/temp";
 
 export default function PetrieA() {
 
   return (
-   <h1>h</h1>
+    <PetrieATemperatureChart/>
   )
 }
 

@@ -40,7 +40,7 @@ export function NavBuilding(){
         fetchBuildings()
     },[])
 
-    return(
+    return (
         <SidebarGroup>
             <SidebarGroupLabel>Buildings</SidebarGroupLabel>
             <SidebarMenu>
@@ -53,22 +53,20 @@ export function NavBuilding(){
                         <SidebarMenuItem>
                             <CollapsibleTrigger asChild>
                                 <SidebarMenuButton tooltip={building.name}>
-                                    <>
                                     <Building2/>
                                     <span>{building.name}</span>
                                     <ChevronRight className="ml-auto transition-transform duration-200 group-open:rotate-90" />
-                                    </>
                                 </SidebarMenuButton>
                             </CollapsibleTrigger>
                             <CollapsibleContent>
                                 <SidebarMenuSub>
                                     {building.sensors.map((sensor) => (
                                         <SidebarMenuSubItem key={sensor.id}>
-                                            <SidebarMenuSubButton>
-                                                <Link href={`/building/${building.name}/sensor/${sensor.name}`}>
+                                            <Link href={`/building/${building.name}/sensor/${sensor.name}`}>
+                                                <SidebarMenuSubButton asChild>
                                                     <span>{sensor.name}</span>
-                                                </Link>
-                                            </SidebarMenuSubButton>
+                                                </SidebarMenuSubButton>
+                                            </Link>
                                         </SidebarMenuSubItem>
                                     ))}
                                 </SidebarMenuSub>

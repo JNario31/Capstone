@@ -6,8 +6,8 @@ interface SensorPageProps {
   params: { building: string; sensor: string }
 }
 
-export default function Page({ params }: SensorPageProps) {
-  const { building, sensor } = params
+export default async function Page({ params }: SensorPageProps) {
+  const { building, sensor } = await params
 
   const sensorChartConfig: Record<string, ChartConfig> = {
     temperature: temperatureConfig,

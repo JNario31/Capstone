@@ -1,5 +1,5 @@
 import type { ChartConfig } from "@/components/ui/chart"
-import { humidityConfig, temperatureConfig } from "@/config/chartConfig"
+import { airflowConfig, humidityConfig, pressureConfig, temperatureConfig } from "@/config/chartConfig"
 import { BuildingChart } from "@/lib/charts/chart"
 
 
@@ -16,11 +16,27 @@ export default function Page() {
       />
       <BuildingChart
         building="Bergeron"
-        title="Humidity Chart - Another Building"
+        title="Humidity Chart"
         description="Real-time humidity data"
         dataKey="humidity"
         socketUrl="http://localhost:4000"
         chartConfig={humidityConfig}
+      />
+      <BuildingChart
+        building="Bergeron"
+        title="Pressure Chart"
+        description="Real-time humidity data"
+        dataKey="pressure"
+        socketUrl="http://localhost:4000"
+        chartConfig={pressureConfig}
+      />
+      <BuildingChart
+        building="Bergeron"
+        title="Airflow Chart"
+        description="Real-time humidity data"
+        dataKey="airflow"
+        socketUrl="http://localhost:4000"
+        chartConfig={airflowConfig}
       />
     </div>
   )

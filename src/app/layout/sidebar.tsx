@@ -1,7 +1,9 @@
 import { Sidebar, SidebarContent, SidebarRail } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
-import { Building2, Home } from "lucide-react";
+import { Building2, Home, Settings } from "lucide-react";
 import { NavBuildings } from "./nav-buildings";
+import NavSettings from "./nav-settings";
+import { NavBuilding } from "./nav-building";
 
 
 
@@ -34,7 +36,16 @@ const data = {
                 }
             ]
         }
-    ]
+    ],
+    navSettings: [
+        {
+            name: "Settings",
+            url:"Settings",
+            icon: Settings
+        }
+    ],
+    
+    
 
 }
 export function AppSidebar1(){
@@ -43,6 +54,8 @@ export function AppSidebar1(){
             <SidebarContent>
                 <NavMain items={data.navMain}/>
                 <NavBuildings items={data.navBuildings}/>
+                <NavSettings items= {data.navSettings}/>
+                <NavBuilding/>
             </SidebarContent>
             <SidebarRail/>
         </Sidebar>

@@ -5,8 +5,8 @@ export type ChartData = {
   [key: string]: string | number
 }
 
-export type BuildingChartProps = {
-  building: string
+export type SensorChartProps = {
+  sensor: string
   title: string
   description: string
   dataKey: string

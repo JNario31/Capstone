@@ -48,7 +48,7 @@ export function AddSensorForm(){
 
     return (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             {/* Sensor Name */}
             <FormField
               control={form.control}
@@ -89,8 +89,10 @@ export function AddSensorForm(){
                 </FormItem>
               )}
             />
-    
-            <Button type="submit">Add Sensor</Button>
+            <div className="mt-4 flex justify-start">
+             <Button type="submit">Add Sensor</Button>
+            </div>
+           
           </form>
         </Form>
     )

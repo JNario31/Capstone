@@ -8,8 +8,8 @@ import { DownloadButton } from "../ui/DownloadButton"
 
 
 
-export function SensorChart({ sensor, title, description, dataKey, socketUrl, chartConfig }: SensorChartProps) {
-  const chartData = useChartData(socketUrl, sensor)
+export function SensorChart({ sensor_id, title, description, dataKey, socketUrl, chartConfig }: SensorChartProps) {
+  const chartData = useChartData(socketUrl, sensor_id)
 
   return (
     <Card className="w-full">
@@ -55,7 +55,7 @@ export function SensorChart({ sensor, title, description, dataKey, socketUrl, ch
       <CardFooter>
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
-          <DownloadButton building={sensor}/>
+          <DownloadButton sensor={sensor_id}/>
           </div>
         </div>
       </CardFooter>

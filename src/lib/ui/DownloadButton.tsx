@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { DownloadButtonProps } from "@/app/types/misc";
 
 
-export function DownloadButton({building}: DownloadButtonProps) {
+export function DownloadButton({sensor}: DownloadButtonProps) {
   const handleDownload = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/export/${building}`);
+      console.log(sensor)
+      const response = await fetch(`http://localhost:4000/export/${sensor}`);
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -16,7 +17,7 @@ export function DownloadButton({building}: DownloadButtonProps) {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `${building}_sensor_data.csv`;
+      a.download = `${sensor}_data.csv`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

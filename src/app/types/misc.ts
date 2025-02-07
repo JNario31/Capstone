@@ -1,5 +1,5 @@
 export type DownloadButtonProps = {
-    building: string,
+    sensor: string,
   }
 
 export type TableProps = {

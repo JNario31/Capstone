@@ -6,7 +6,7 @@ export type ChartData = {
 }
 
 export type SensorChartProps = {
-  sensor: string
+  sensor_id: string
   title: string
   description: string
   dataKey: string

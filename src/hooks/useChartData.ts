@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import io from "socket.io-client"
 
 
-export function useChartData(socketUrl: string, sensor: string) {
+export function useChartData(socketUrl: string, sensorId: string) {
   const [chartData, setChartData] = useState<ChartData[]>([])
   const chartDataRef = useRef<ChartData[]>([])
   const socketRef = useRef<ReturnType<typeof io> | null>(null)
@@ -34,22 +34,27 @@ export function useChartData(socketUrl: string, sensor: string) {
     [isDataDifferent],
   )
 
+  
+
   useEffect(() => {
     socketRef.current = io(socketUrl, { transports: ["websocket"] })
 
     socketRef.current.on("connect", () => {
       console.log("Connected to the server")
-      socketRef.current?.emit("request_data", { sensor })
+      console.log("Emitted id:", sensorId)
+      
+      socketRef.current?.emit("request_data", { sensorId })
     })
 
     socketRef.current.on("chart_data", handleData)
 
+    
     return () => {
       socketRef.current?.off("chart_data", handleData)
       socketRef.current?.disconnect()
     }
-  }, [socketUrl, sensor, handleData])
-
+  }, [socketUrl, sensorId, handleData])
+  console.log("Data:", chartData)
   return chartData
 }
 

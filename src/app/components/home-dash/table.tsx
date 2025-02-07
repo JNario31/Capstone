@@ -1,12 +1,8 @@
 "use client"
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel } from "@/components/ui/dropdown-menu";
 import { TabsList, Tabs, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { BuildingTable } from "@/lib/table/table";
 import { DownloadButton } from "@/lib/ui/DownloadButton";
-import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuSeparator, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { Building } from "lucide-react";
 import { useState } from "react";
 
 export default function BuildingTables(){
@@ -33,7 +29,7 @@ export default function BuildingTables(){
                             
                         </CardHeader>
                         <div className="translate-x-4">
-                            <DownloadButton building={building}/>
+                            <DownloadButton sensor={building}/>
                         </div>
                         <CardContent>
                             <BuildingTable key={building} socketUrl={"http://localhost:4000"} building={building}/>

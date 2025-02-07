@@ -8,7 +8,7 @@ export default function Settings(){
         <div className="container mx-auto p-4 space-y-8">
             <Card>
                 <CardHeader>
-                    <CardTitle>Subscription</CardTitle>
+                    <CardTitle>Subscription Settings</CardTitle>
                     <CardDescription>Subscribe for monitoring system alerts.</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -25,12 +25,12 @@ export default function Settings(){
 
             <Card>
                 <CardHeader>
-                    <CardTitle>Add Sensor</CardTitle>
-                    <CardDescription>Add new sensor for a building.</CardDescription>
+                    <CardTitle>Sensor Settings</CardTitle>
+                    <CardDescription>Sensors installed in corresponding buildings</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex gap-4">
-                        <SensorDrawer name={"Add Sensor"} title={"Sensor"} description={"Sensor"}/>
+                        <SensorDrawer name={"Add Sensor"} title={"Add Sensor"} description={"Input a sensor name and select the building for the sensor."}/>
                     </div>
                 </CardContent>
             </Card>

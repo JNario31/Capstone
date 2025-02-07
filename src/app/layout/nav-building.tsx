@@ -6,39 +6,39 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Building2, ChevronRight } from "lucide-react"
 import Link from "next/link"
 
-interface Building{
+interface Building {
     id: number
     name: string
 }
 
-interface Sensor{
+interface Sensor {
     id: number
     name: string
 }
 
-export function NavBuilding(){
+export function NavBuilding() {
     const [buildings, setBuildings] = useState<(Building & {sensors: Sensor[]})[]>([])
 
-    useEffect(()=>{
-        const fetchBuildings = async () =>{
+    useEffect(() => {
+        const fetchBuildings = async () => {
             try {
-                const buildingsResponse = await axios.get('http://localhost:4000/buildings')
+                const buildingsResponse = await axios.get("http://localhost:4000/buildings")
                 const buildingsWithSensors = await Promise.all(
                     buildingsResponse.data.map(async (building: Building) => {
                         const sensorsResponse = await axios.get(`http://localhost:4000/buildings/${building.id}/sensors`)
-                        return{
+                        return {
                             ...building,
                             sensors: sensorsResponse.data
                         }
                     })
                 )
                 setBuildings(buildingsWithSensors)
-            } catch (error){
+            } catch (error) {
                 console.error('Failed to fetch buildings', error)
             }
         }
         fetchBuildings()
-    },[])
+    }, [])
 
     return (
         <SidebarGroup>
@@ -62,7 +62,10 @@ export function NavBuilding(){
                                 <SidebarMenuSub>
                                     {building.sensors.map((sensor) => (
                                         <SidebarMenuSubItem key={sensor.id}>
-                                            <Link href={`/building/${building.name}/sensor/${sensor.name}`}>
+                                            <Link 
+                                                href={`/building/${building.id}/sensor/${sensor.id}`} 
+                                                title={`${building.name} - ${sensor.name}`}
+                                            >
                                                 <SidebarMenuSubButton asChild>
                                                     <span>{sensor.name}</span>
                                                 </SidebarMenuSubButton>
